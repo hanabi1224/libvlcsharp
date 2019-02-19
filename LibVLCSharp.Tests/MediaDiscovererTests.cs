@@ -9,6 +9,7 @@ namespace LibVLCSharp.Tests
     public class MediaDiscovererTests : BaseSetup
     {
         [Test]
+        [Ignore("makes tests freeze on mac")]
         public void CreateStartAndStopDiscoverer()
         {
             var mds = _libVLC.MediaDiscoverers(MediaDiscovererCategory.Lan);

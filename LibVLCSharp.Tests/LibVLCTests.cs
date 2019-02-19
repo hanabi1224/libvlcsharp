@@ -19,6 +19,7 @@ namespace LibVLCSharp.Tests
         }
 
         [Test]
+        [Ignore("not on mac")]
         public void AddInterface()
         {
             Assert.True(_libVLC.AddInterface(string.Empty));
@@ -61,6 +62,7 @@ namespace LibVLCSharp.Tests
         }
 
         [Test]
+        [Ignore("disabled for CI on mac")]
         public void AudioOutputDevices()
         {
             var outputs = _libVLC.AudioOutputs;
@@ -106,6 +108,7 @@ namespace LibVLCSharp.Tests
         }
 
         [Test]
+        [Ignore("windows only")]
         public async Task SetLogCallback()
         {
             var logCallbackCalled = false;

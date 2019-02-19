@@ -15,6 +15,7 @@ namespace LibVLCSharp.Tests
         // This test depends on both accepting the network access request made by the test runner 
         // and having a chromecast on the same local network.
         [Test]
+        [Ignore("free on mac")]
         public async Task DiscoverItems()
         {
             Core.Initialize();
@@ -58,6 +59,7 @@ namespace LibVLCSharp.Tests
         }
 
         [Test]
+        [Ignore("free on mac")]
         public void DisposeRendererDiscoverer()
         {
             var rendererDiscoverer = new RendererDiscoverer(_libVLC, _libVLC.RendererList.LastOrDefault().Name);
