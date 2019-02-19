@@ -21,8 +21,7 @@ namespace LibVLCSharp.Tests
 
             var mp = new MediaPlayer(_libVLC)
             {
-                Media = new Media(_libVLC, "http://www.quirksmode.org/html5/videos/big_buck_bunny.mp4",
-                    Media.FromType.FromLocation)
+                Media = new Media(_libVLC, RealMp3Path)
             };
 
             Assert.True(mp.Play());

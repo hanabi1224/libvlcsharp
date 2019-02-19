@@ -53,14 +53,16 @@ namespace LibVLCSharp.Tests
         [Test]
         public async Task CreateRealMedia()
         {
-            using (var media = new Media(_libVLC, RealStreamMediaPath, Media.FromType.FromLocation))
+            using (var media = new Media(_libVLC, RealMp3Path))
             {
+                media.Parse();
+                await Task.Delay(100);
                 Assert.NotZero(media.Duration);
                 using (var mp = new MediaPlayer(media))
                 {
                     Assert.True(mp.Play());
                     await Task.Delay(4000); // have to wait a bit for statistics to populate
-                    Assert.Greater(media.Statistics.DemuxBitrate, 0);
+                    Assert.Greater(media.Statistics.DemuxReadBytes, 0);
                     mp.Stop();
                 }
             }
@@ -127,7 +129,7 @@ namespace LibVLCSharp.Tests
         {
             using(var mp = new MediaPlayer(_libVLC))
             {
-                var media = new Media(_libVLC, await GetStreamFromUrl("http://www.quirksmode.org/html5/videos/big_buck_bunny.mp4"));
+                var media = new Media(_libVLC, File.OpenRead(RealMp3Path));
                 mp.Play(media);
 
                 await Task.Delay(1000);
@@ -149,8 +151,8 @@ namespace LibVLCSharp.Tests
             var mp1 = new MediaPlayer(libVLC1);
             var mp2 = new MediaPlayer(libVLC2);
 
-            mp1.Play(new Media(libVLC1, await GetStreamFromUrl("http://www.quirksmode.org/html5/videos/big_buck_bunny.mp4")));
-            mp2.Play(new Media(libVLC2, await GetStreamFromUrl("https://streams.videolan.org/streams/mp3/05-Mr.%20Zebra.mp3")));
+            mp1.Play(new Media(libVLC1, File.OpenRead(RealMp3Path)));
+            mp2.Play(new Media(libVLC2, File.OpenRead(RealMp3Path)));
 
             await Task.Delay(10000);
         }
