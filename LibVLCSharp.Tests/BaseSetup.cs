@@ -15,7 +15,7 @@ namespace LibVLCSharp.Tests
         {
             Core.Initialize();
 
-            _libVLC = new LibVLC("--no-audio", "--no-video");
+            _libVLC = new LibVLC("--no-audio", "--no-video", "--verbose=2");
         }
 
         //protected string RealStreamMediaPath => "http://streams.videolan.org/streams/mp3/Owner-MPEG2.5.mp3";
